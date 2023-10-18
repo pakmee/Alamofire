@@ -1,8 +1,8 @@
-// swift-tools-version:5.8
+// swift-tools-version:5.0
 //
 //  Package.swift
 //
-//  Copyright (c) 2022 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,24 +25,17 @@
 
 import PackageDescription
 
-let package = Package(name: "Alamofire",
-                      platforms: [.macOS(.v10_13),
-                                  .iOS(.v11),
-                                  .tvOS(.v11),
-                                  .watchOS(.v4)],
-                      products: [.library(name: "Alamofire",
-                                          targets: ["Alamofire"])],
-                      targets: [.target(name: "Alamofire",
-                                        path: "Source",
-                                        exclude: ["Info.plist"],
-                                        linkerSettings: [.linkedFramework("CFNetwork",
-                                                                          .when(platforms: [.iOS,
-                                                                                            .macOS,
-                                                                                            .tvOS,
-                                                                                            .watchOS]))]),
-                                .testTarget(name: "AlamofireTests",
-                                            dependencies: ["Alamofire"],
-                                            path: "Tests",
-                                            exclude: ["Info.plist", "Test Plans"],
-                                            resources: [.process("Resources")])],
-                      swiftLanguageVersions: [.v5])
+let package = Package(
+    name: "Alamofire",
+    products: [
+        .library(
+            name: "Alamofire",
+            targets: ["Alamofire"])
+    ],
+    targets: [
+        .target(
+            name: "Alamofire",
+            path: "Source")
+    ],
+    swiftLanguageVersions: [.v4, .v5]
+)
